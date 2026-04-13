@@ -11,8 +11,8 @@
   <groupId>com.university</groupId>
   <artifactId>university-management</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>university-management</name>
-  <description>University Management System with Spring Boot and JDBC</description>
+  <name>learn-university-management</name>
+  <description>LEARN-UNIVERSITY Management System with Spring Boot and JDBC</description>
 
   <properties>
     <java.version>17</java.version>

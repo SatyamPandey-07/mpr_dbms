@@ -1,4 +1,4 @@
--- University Management System Schema
+-- LEARN-UNIVERSITY Management System Schema
 -- strictly following Part 3 requirements
 
 CREATE DATABASE IF NOT EXISTS university_db;

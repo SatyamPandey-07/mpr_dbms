@@ -1,4 +1,4 @@
-# University Management System (MPR DBMS)
+# LEARN-UNIVERSITY Management System (MPR DBMS)
 
 A full-stack University Management System built with Spring Boot (JDBC) + React (Vite) + MySQL.
 

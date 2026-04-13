@@ -13,7 +13,7 @@ const Sidebar = () => {
   return (
     <div className="w-64 bg-slate-900 text-white flex flex-col shadow-xl">
       <div className="p-8">
-        <h1 className="text-2xl font-bold tracking-tight text-primary-400">G-Univ</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-primary-400">LEARN-UNIVERSITY</h1>
         <p className="text-slate-400 text-xs mt-1 uppercase tracking-widest font-semibold font-mono">Management</p>
       </div>
       
