@@ -2,6 +2,7 @@ package com.university.exception;
 
 import com.university.dto.ApiResponse;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -38,6 +39,18 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse<String> handleIllegalArgumentException(IllegalArgumentException ex) {
         return ApiResponse.error(ex.getMessage());
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ApiResponse<String> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
+        String message = ex.getMostSpecificCause() != null ? ex.getMostSpecificCause().getMessage() : ex.getMessage();
+        if (message.contains("Duplicate entry")) {
+            if (message.contains("'ssn'")) return ApiResponse.error("Error: SSN already exists in the system.");
+            if (message.contains("'email'")) return ApiResponse.error("Error: Email already exists in the system.");
+            return ApiResponse.error("Error: A record with this information already exists.");
+        }
+        return ApiResponse.error("Database integrity error: " + message);
     }
 
     @ExceptionHandler(DataAccessException.class)

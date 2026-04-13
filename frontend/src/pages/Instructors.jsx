@@ -13,7 +13,7 @@ const Instructors = () => {
   const [selectedInstructor, setSelectedInstructor] = useState(null);
   const [toast, setToast] = useState(null);
   const [currentInst, setCurrentInst] = useState({
-    person: { ssn: '', firstName: '', lastName: '', email: '', address: '', dateOfBirth: '' },
+    person: { ssn: '', firstName: '', lastName: '', email: '', address: '', dateOfBirth: null },
     rank: '',
     salary: 0
   });
@@ -106,7 +106,7 @@ const Instructors = () => {
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-slate-800">Instructor Management</h1>
         <button 
-          onClick={() => { setCurrentInst({ person: {}, rank: '', salary: 0 }); setShowModal(true); }}
+          onClick={() => { setCurrentInst({ person: { ssn: '', firstName: '', lastName: '', email: '', address: '', dateOfBirth: null }, rank: '', salary: 0 }); setShowModal(true); }}
           className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 shadow-lg shadow-primary-900/20 transition-all active:scale-95"
         >
           <Plus size={18} /> Add Instructor
@@ -176,11 +176,31 @@ const Instructors = () => {
               <div className="grid grid-cols-2 gap-6">
                 <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-2">First Name</label>
-                    <input required type="text" className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl" value={currentInst.person.firstName} onChange={(e) => setCurrentInst({...currentInst, person: {...currentInst.person, firstName: e.target.value}})} />
+                    <input required type="text" className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl" value={currentInst.person.firstName || ''} onChange={(e) => setCurrentInst({...currentInst, person: {...currentInst.person, firstName: e.target.value}})} />
                 </div>
                 <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-2">Last Name</label>
-                    <input required type="text" className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl" value={currentInst.person.lastName} onChange={(e) => setCurrentInst({...currentInst, person: {...currentInst.person, lastName: e.target.value}})} />
+                    <input required type="text" className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl" value={currentInst.person.lastName || ''} onChange={(e) => setCurrentInst({...currentInst, person: {...currentInst.person, lastName: e.target.value}})} />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-6">
+                <div>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">SSN</label>
+                    <input required type="text" placeholder="XXX-XX-XXXX" className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl" value={currentInst.person.ssn || ''} onChange={(e) => setCurrentInst({...currentInst, person: {...currentInst.person, ssn: e.target.value}})} />
+                </div>
+                <div>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">Email</label>
+                    <input required type="email" placeholder="email@university.edu" className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl" value={currentInst.person.email || ''} onChange={(e) => setCurrentInst({...currentInst, person: {...currentInst.person, email: e.target.value}})} />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-6">
+                <div>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">Address</label>
+                    <input type="text" className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl" value={currentInst.person.address || ''} onChange={(e) => setCurrentInst({...currentInst, person: {...currentInst.person, address: e.target.value}})} />
+                </div>
+                <div>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">Date of Birth</label>
+                    <input type="date" className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl" value={currentInst.person.dateOfBirth || ''} onChange={(e) => setCurrentInst({...currentInst, person: {...currentInst.person, dateOfBirth: e.target.value || null}})} />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-6">

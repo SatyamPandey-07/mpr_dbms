@@ -14,7 +14,7 @@ const Students = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [toast, setToast] = useState(null);
   const [currentStudent, setCurrentStudent] = useState({
-    person: { ssn: '', firstName: '', lastName: '', email: '', address: '', dateOfBirth: '' },
+    person: { ssn: '', firstName: '', lastName: '', email: '', address: '', dateOfBirth: null },
     enrollmentYear: 2024,
     major: ''
   });
@@ -107,7 +107,7 @@ const Students = () => {
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-slate-800">Student Management</h1>
         <button 
-          onClick={() => { setCurrentStudent({ person: {}, enrollmentYear: 2024, major: '' }); setShowModal(true); }}
+          onClick={() => { setCurrentStudent({ person: { ssn: '', firstName: '', lastName: '', email: '', address: '', dateOfBirth: null }, enrollmentYear: 2024, major: '' }); setShowModal(true); }}
           className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 shadow-lg shadow-primary-900/20 transition-all active:scale-95"
         >
           <Plus size={18} /> Add Student
@@ -220,6 +220,16 @@ const Students = () => {
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-2">Enrollment Year</label>
                   <input required type="number" className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500" value={currentStudent.enrollmentYear} onChange={(e) => setCurrentStudent({...currentStudent, enrollmentYear: parseInt(e.target.value)})} />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">Address</label>
+                  <input type="text" className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500" value={currentStudent.person.address || ''} onChange={(e) => setCurrentStudent({...currentStudent, person: {...currentStudent.person, address: e.target.value}})} />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">Date of Birth</label>
+                  <input type="date" className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500" value={currentStudent.person.dateOfBirth || ''} onChange={(e) => setCurrentStudent({...currentStudent, person: {...currentStudent.person, dateOfBirth: e.target.value || null}})} />
                 </div>
               </div>
               <div className="flex justify-end gap-4 mt-8">
