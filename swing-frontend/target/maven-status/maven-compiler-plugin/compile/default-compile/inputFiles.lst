@@ -1,0 +1,14 @@
+D:\mprdbms\mpr\swing-frontend\src\main\java\com\university\App.java
+D:\mprdbms\mpr\swing-frontend\src\main\java\com\university\model\ApiResponse.java
+D:\mprdbms\mpr\swing-frontend\src\main\java\com\university\model\Course.java
+D:\mprdbms\mpr\swing-frontend\src\main\java\com\university\model\Department.java
+D:\mprdbms\mpr\swing-frontend\src\main\java\com\university\model\Instructor.java
+D:\mprdbms\mpr\swing-frontend\src\main\java\com\university\model\Person.java
+D:\mprdbms\mpr\swing-frontend\src\main\java\com\university\model\Student.java
+D:\mprdbms\mpr\swing-frontend\src\main\java\com\university\service\ApiClient.java
+D:\mprdbms\mpr\swing-frontend\src\main\java\com\university\ui\MainFrame.java
+D:\mprdbms\mpr\swing-frontend\src\main\java\com\university\ui\panels\CoursePanel.java
+D:\mprdbms\mpr\swing-frontend\src\main\java\com\university\ui\panels\DashboardPanel.java
+D:\mprdbms\mpr\swing-frontend\src\main\java\com\university\ui\panels\DepartmentPanel.java
+D:\mprdbms\mpr\swing-frontend\src\main\java\com\university\ui\panels\InstructorPanel.java
+D:\mprdbms\mpr\swing-frontend\src\main\java\com\university\ui\panels\StudentPanel.java

@@ -1,72 +1,91 @@
-# LEARN-UNIVERSITY Management System (MPR DBMS)
+# LEARN-UNIVERSITY Management System
 
-A full-stack University Management System built with Spring Boot (JDBC) + React (Vite) + MySQL.
+University management system with:
 
-It supports management of students, instructors, departments, courses, and core university relationships like advising and course assignments.
-
-## Features
-
-- CRUD for Students, Instructors, Departments, and Courses
-- Advisor assignment (Instructor -> Student)
-- Course assignment (Instructor -> Course with semester/year)
-- Search support on key entities
-- Toast notifications and loading states on frontend
-- MySQL relational schema with constraints and sample data
-
-## Tech Stack
-
-- Backend: Java 17, Spring Boot 3.2.2, JDBC, HikariCP, Lombok
-- Frontend: React 18, Vite 5, Tailwind CSS, Axios
-- Database: MySQL 8+
+- MySQL database schema and seed data
+- Spring Boot backend REST API
+- Swing desktop frontend (primary desktop client)
+- React frontend (optional web client)
 
 ## Project Structure
 
 ```text
 mpr/
-  backend/    Spring Boot REST API
-  db/         SQL schema + seed data
-  frontend/   React Vite app
+  backend/          Spring Boot REST API
+  db/               SQL schema and sample data
+  swing-frontend/   Java Swing desktop app
+  frontend/         React + Vite web app (optional)
 ```
+
+## Tech Stack
+
+- Java 17
+- Spring Boot 3.2.2 (JDBC + HikariCP)
+- MySQL 8+
+- Swing (FlatLaf + MigLayout + Gson)
+- React/Vite (optional)
 
 ## Prerequisites
 
 - Java 17+
+- Maven 3.9+
 - MySQL 8+
-- Node.js 18+ and npm
-- Maven 3.9+ (or run backend from IDE)
+- Node.js 18+ (only for `frontend/`)
 
-## Setup
+## Quick Start (Swing + Backend + DB)
 
-### 1. Database
+Run in this order.
 
-Run the SQL script:
+### 1. Initialize Database
 
 ```bash
 mysql -u root -p < db/schema.sql
 ```
 
-This creates `university_db` with sample records.
+This creates `university_db` and inserts sample records.
 
-### 2. Backend
+### 2. Configure Backend DB Credentials
 
-Update DB credentials if needed in:
+Edit:
 
 - `backend/src/main/resources/application.properties`
 
-Then run backend:
+Default currently uses:
+
+- URL: `jdbc:mysql://localhost:3306/university_db?...`
+- Username: `root`
+- Password: `saam`
+
+Update username/password to your local MySQL values if needed.
+
+### 3. Run Backend API
 
 ```bash
 cd backend
 mvn spring-boot:run
 ```
 
-If Maven is not available in PATH, run from IDE using:
+Backend base URL:
 
-- `backend/src/main/java/com/university/UniversityApplication.java`
+- `http://localhost:8080`
+- API base: `http://localhost:8080/api`
 
-Backend default URL: `http://localhost:8080`
+### 4. Run Swing Frontend
 
-### 3. Frontend
+Open a new terminal:
+
+```bash
+cd swing-frontend
+mvn compile exec:java
+```
+
+The Swing app calls backend endpoints through:
+
+- `http://localhost:8080/api`
+
+If dashboard counts show `N/A` or don't load, verify backend is running first.
+
+## Optional: Run React Web Frontend
 
 ```bash
 cd frontend
@@ -74,25 +93,35 @@ npm install
 npm run dev
 ```
 
-Frontend default URL: `http://localhost:3000`
+Vite dev server runs on `http://localhost:3000` and proxies `/api` to backend.
 
-Vite proxies `/api` to backend `http://localhost:8080`.
+## Common Commands
 
-## API Base
+### Backend
 
-- Base path: `/api`
-- Example endpoints:
-  - `/api/students`
-  - `/api/instructors`
-  - `/api/departments`
-  - `/api/courses`
+```bash
+cd backend
+mvn clean test
+mvn clean package
+```
+
+### Swing Frontend
+
+```bash
+cd swing-frontend
+mvn clean compile
+mvn exec:java
+```
+
+## API Endpoints (Examples)
+
+- `/api/students`
+- `/api/instructors`
+- `/api/departments`
+- `/api/courses`
 
 ## Notes
 
-- The backend uses JDBC DAOs (no Hibernate/JPA).
-- Error handling is centralized via a global exception handler.
-- The SQL schema includes foreign keys and delete rules for relationships.
-
-## License
-
-MIT
+- Backend uses JDBC DAOs (no JPA/Hibernate).
+- SQL schema includes key relations such as advises, teaches, offers, chairs, affiliated_with, and person_phone.
+- Swing and React frontends both depend on the backend API being available.
